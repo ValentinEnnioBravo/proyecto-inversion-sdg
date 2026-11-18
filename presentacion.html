@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FacturasYa</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Argentum+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="deck/css/deck.css">
+</head>
+<body>
+
+<div id="stage">
+  <div id="frame">
+
+    <!-- Lienzo único con forma de factura; la cámara lo transforma -->
+    <div id="lienzo"></div>
+
+    <!-- Fijos fuera de la cámara -->
+    <div id="progreso-pista"><div id="progreso"></div></div>
+    <div id="marca"></div>
+    <img id="logo-fijo" alt="">
+
+    <!-- Indicador de volumen (ruedita / flechas arriba-abajo) -->
+    <div id="vol" aria-hidden="true">
+      <div class="fill"></div>
+      <div class="num">80</div>
+    </div>
+
+  </div>
+</div>
+
+<noscript>
+  <p style="padding:2rem;font-family:sans-serif">
+    Esta presentaci&oacute;n necesita JavaScript activado.
+  </p>
+</noscript>
+
+<script src="deck/js/config.js"></script>
+<script src="deck/js/utils.js"></script>
+<script src="deck/js/media.js"></script>
+<script src="deck/js/factura.js"></script>
+
+<!-- Diapositivas: el orden de estas líneas ES el orden de la presentación. -->
+<!-- Intro -->
+<script src="deck/js/slides/01-portada.js"></script>
+<script src="deck/js/slides/02-equipo.js"></script>
+<script src="deck/js/slides/03-mision.js"></script>
+<script src="deck/js/slides/04-operativa.js"></script>
+<!-- Problema -->
+<script src="deck/js/slides/05-cronometro.js"></script>
+<script src="deck/js/slides/06-dia-de-trabajo.js"></script>
+<script src="deck/js/slides/07-cronometro-vuelve.js"></script>
+<script src="deck/js/slides/08-costo.js"></script>
+<script src="deck/js/slides/09-ia.js"></script>
+<!-- Solución -->
+<script src="deck/js/slides/10-propuesta.js"></script>
+<script src="deck/js/slides/11-funcionamiento.js"></script>
+<script src="deck/js/slides/12-implementacion.js"></script>
+<script src="deck/js/slides/13-proteccion.js"></script>
+<!-- Mercado -->
+<script src="deck/js/slides/14-mercado.js"></script>
+<script src="deck/js/slides/15-som.js"></script>
+<script src="deck/js/slides/16-segmentos.js"></script>
+<!-- Competencia -->
+<script src="deck/js/slides/17-posicionamiento.js"></script>
+<script src="deck/js/slides/18-estrategia.js"></script>
+<script src="deck/js/slides/19-diferenciadores.js"></script>
+<script src="deck/js/slides/20-cobertura.js"></script>
+<!-- Go to market -->
+<script src="deck/js/slides/21-etapas.js"></script>
+<script src="deck/js/slides/22-venta.js"></script>
+<script src="deck/js/slides/23-estudios.js"></script>
+<script src="deck/js/slides/24-promocion.js"></script>
+<!-- Modelo de negocio -->
+<script src="deck/js/slides/25-planes.js"></script>
+<script src="deck/js/slides/26-ahorro.js"></script>
+<script src="deck/js/slides/27-unit-economics.js"></script>
+<!-- Finanzas -->
+<script src="deck/js/slides/28-proyeccion.js"></script>
+<script src="deck/js/slides/29-flujo-caja.js"></script>
+<script src="deck/js/slides/30-indicadores.js"></script>
+<script src="deck/js/slides/31-crecimiento.js"></script>
+<!-- Inversión requerida -->
+<script src="deck/js/slides/32-inversion.js"></script>
+<script src="deck/js/slides/33-objetivos.js"></script>
+<script src="deck/js/slides/34-cierre.js"></script>
+
+<script src="deck/js/deck.js"></script>
+
+</body>
+</html>
