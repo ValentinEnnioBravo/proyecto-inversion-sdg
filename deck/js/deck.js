@@ -45,6 +45,10 @@
     '<p class="m-bajada">' + CONFIG.bajada + '</p>' +
     '<p class="m-materia">' + CONFIG.materia + '</p>';
   logo.src = U.ruta(CONFIG.logo);
+  document.getElementById('inicio').innerHTML =
+    '<img src="' + U.ruta(CONFIG.logo) + '" alt="' + CONFIG.titulo + '">' +
+    '<div><p class="m-slogan">' + CONFIG.slogan + '.</p>' +
+    '<p class="m-bajada">' + CONFIG.bajada + '.</p></div>';
 
   SLIDES.forEach(function (s) {
     if (s.vista) { s.root = lienzo; return; }
@@ -92,6 +96,11 @@
 
   function vistaDe(s) {
     var Vw = vw(), Vh = vh();
+    if (s.completa || s.inicio) {
+      // Factura centrada ocupando toda la pantalla.
+      var sc0 = Math.min(0.96 * Vw / Factura.W, 0.96 * Vh / Factura.H);
+      return { cx: Factura.W / 2, cy: Factura.H / 2, s: sc0 };
+    }
     if (s.vista) {
       // Factura completa a la izquierda (≈45 % del ancho), marca a la derecha.
       var sc = Math.min(0.45 * Vw / Factura.W, 0.92 * Vh / Factura.H);
@@ -151,6 +160,7 @@
   function fijos(s) {
     barra.style.width = ((i + 1) / N * 100) + '%';
     logo.classList.toggle('oculto', !!s.vista);
+    frame.classList.toggle('en-inicio', !!s.inicio);
     try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
   }
 
@@ -179,7 +189,7 @@
       moverCamara(vistaDe(b), a.zonaRect, b.zonaRect, cambio, cambio ? 1400 : 700, function () {
         moviendo = false;
         if (!a.vista) quieto(a, pasosDe(a) - 1);   // de lejos, la factura se ve llena
-        if (b.vista) marca.classList.remove('oculta');
+        if (b.vista && !b.completa && !b.inicio) marca.classList.remove('oculta');
         if (b.entrar) b.entrar(b.root);
         pintarPaso(b, p, true);
       });
@@ -276,7 +286,7 @@
   cam = vistaDe(s0);
   aplicar(cam);
   fijos(s0);
-  marca.classList.toggle('oculta', !s0.vista);
+  marca.classList.toggle('oculta', !s0.vista || !!s0.completa || !!s0.inicio);
   quieto(s0, -1);
   requestAnimationFrame(function () {
     if (s0.entrar) s0.entrar(s0.root);

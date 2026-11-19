@@ -13,7 +13,7 @@
   // Centro de la ficha en cada paso (coordenadas del viewBox 1600 × 900).
   var POS = {
     3: [462, 132],    // junto a Mail
-    4: [910, 252],    // a la salida de FacturasYa
+    4: [710, 402],    // debajo de FacturasYa, sobre la validación
     5: [960, 530],    // a la salida de la validación
     6: [1468, 132]    // junto a Tango
   };

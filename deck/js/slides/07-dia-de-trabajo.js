@@ -33,7 +33,7 @@
       }).join('');
 
       return '<div class="slide dia">' +
-               '<p class="dia-caso" data-paso="0"><b>Distribuidora con 900 facturas de compra por mes</b> <span>· Caso ilustrativo</span></p>' +
+               '<p class="dia-caso" data-paso="0"><b>Distribuidora con 900 facturas de compra por mes</b></p>' +
                '<div class="lt">' +
                  '<i class="lt-linea barra-h" data-paso="0" style="--t:1.2s;left:' + X[0] + '%;width:' + (X[3] - X[0]) + '%"></i>' +
                  pts +

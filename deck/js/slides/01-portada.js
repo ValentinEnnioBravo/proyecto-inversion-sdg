@@ -1,10 +1,10 @@
 /* 01 · Portada -------------------------------------------------------
-   Vista completa: la factura a la izquierda y el bloque de marca a la
-   derecha (fuera del lienzo, lo arma deck.js con los datos de CONFIG).
+   La factura completa, centrada y a pantalla completa (sin marca).
    ------------------------------------------------------------------ */
 SLIDES.push({
   id: 'portada',
   zona: 'vista',
   vista: true,
+  completa: true,
   entrar: function () { Media.precargar(); }
 });

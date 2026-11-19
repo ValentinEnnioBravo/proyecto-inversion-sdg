@@ -13,22 +13,22 @@ SLIDES.push({
       {
         n: '01',
         titulo: 'Búsqueda y pauta digital',
-        txt: '<b>Google Ads</b> cuando aparece el dolor (factura duplicada, multa, auditoría) y <b>LinkedIn Ads</b> dirigido a jefes de administración y contadores.'
+        txt: 'Google y LinkedIn Ads'
       },
       {
         n: '02',
         titulo: 'Estudios contables e implementadores',
-        txt: 'Actúan como <b>prescriptores</b>: usan la plataforma gratis y reciben una comisión única del <b>5%</b> del primer año de abono por cada cliente referido.'
+        txt: 'Prescriptores'
       },
       {
         n: '03',
         titulo: 'Prueba gratis y demostración real',
-        txt: '<b>100 facturas gratis</b> y sin costo de implementación. Alta online directa en pymes chicas; demo y prueba con facturas propias en medianas y grandes.'
+        txt: '100 facturas gratis'
       },
       {
         n: '04',
         titulo: 'Casos de éxito y boca en boca',
-        txt: 'Publicación de horas ahorradas y errores evitados por rubro, junto con webinars con clientes y estudios que aceleran nuevas recomendaciones.'
+        txt: 'Webinars y recomendaciones'
       }
     ];
 

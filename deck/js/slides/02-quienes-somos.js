@@ -1,6 +1,5 @@
 /* 02 · Quiénes somos -----------------------------------------------
-   Presentación de FacturasYa con el logo en alta resolución en grande
-   a la izquierda y la definición de la empresa a la derecha.
+   Tres datos grandes que definen a FacturasYa.
    Fuentes: Comercial (1).docx y Comercial (2).docx.
    ------------------------------------------------------------------ */
 SLIDES.push({
@@ -10,19 +9,19 @@ SLIDES.push({
 
   html: function () {
     return '<div class="slide qs">' +
-             '<div class="qs-logo" data-paso="0">' +
-               '<img src="' + U.ruta(CONFIG.logo) + '" alt="' + CONFIG.titulo + '">' +
-               '<p class="qs-slogan">' + CONFIG.slogan + '</p>' +
-               '<p class="qs-bajada">' + CONFIG.bajada + '</p>' +
-             '</div>' +
-             '<div class="qs-col">' +
-               '<h2 class="t-titulo" data-paso="0">Quiénes somos</h2>' +
-               '<p class="qs-lead" data-paso="0" style="--d:150ms"><b>FacturasYa S.A.S.</b> — plataforma SaaS B2B en la nube que ordena y controla las facturas de proveedores de empresas argentinas.</p>' +
-               '<ul class="lista qs-lista">' +
-                 '<li data-paso="1">Para empresas con más de 150 facturas de compra por mes</li>' +
-                 '<li data-paso="2">Equipo de 6 socios fundadores desarrolladores · 100% remoto desde Buenos Aires</li>' +
-                 '<li data-paso="3">Orden, control y confianza — sin obligar a cambiar el ERP ni Excel</li>' +
-               '</ul>' +
+             '<h2 class="t-titulo" data-paso="0">Quiénes somos</h2>' +
+             '<div class="tres">' +
+               '<div class="dato azul-top" data-paso="1">' +
+                 '<span class="grande">+' + U.n(150) + '</span>' +
+                 '<p class="dato-txt">Facturas por mes</p>' +
+               '</div>' +
+               '<div class="dato azul-top" data-paso="2">' +
+                 '<span class="grande">' + U.n(6) + '</span>' +
+                 '<p class="dato-txt">Socios</p>' +
+               '</div>' +
+               '<div class="dato azul-top" data-paso="3">' +
+                 '<span class="grande texto">Orden, control y confianza</span>' +
+               '</div>' +
              '</div>' +
            '</div>';
   }
