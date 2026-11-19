@@ -14,11 +14,16 @@ una cámara virtual hasta el marco siguiente.
 | Volver | Clic derecho · ← · PageUp |
 | Portada / cierre | Home / End |
 | Pantalla completa | F |
-| Ir a una diapositiva | `presentacion.html#12` |
+| Ir a una diapositiva | Clic en su número, en la tira de la izquierda · `presentacion.html#12` |
 
 La diapositiva 7 hace una pregunta al público; al avanzar gira sobre sí misma y muestra
 cuánto tarda cargar una factura a mano (8 a 15 minutos). La 8 usa ese tiempo para
 calcular las horas ahorradas por empleado por mes.
+
+La diapositiva 12 reproduce el video de demostración (`assets/video/facturasya-recorrido.mp4`),
+sin sonido y a velocidad x1,5.
+Arranca al llegar y se frena al salir. Tiene los controles del navegador (play, barra de tiempo, velocidad); para
+seguir, → o Espacio.
 
 ## Estructura
 

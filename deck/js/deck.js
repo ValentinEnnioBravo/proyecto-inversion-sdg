@@ -153,10 +153,31 @@
 
   /* --- mobiliario fijo -------------------------------------------- */
 
-  function fijos(s) {
+  /* Rollo: tira vertical de cuadrados numerados en el margen izquierdo.
+     El actual se resalta y queda centrado; clic en otro lleva a esa
+     diapositiva. */
+  var rollo = document.createElement('nav');
+  rollo.id = 'rollo';
+  rollo.setAttribute('aria-label', 'Diapositivas');
+  rollo.innerHTML = SLIDES.map(function (s, k) {
+    return '<button type="button" data-ir="' + k + '">' + (k + 1) + '</button>';
+  }).join('');
+  frame.appendChild(rollo);
+  var cuadros = rollo.querySelectorAll('[data-ir]');
+
+  function marcarRollo(suave) {
+    for (var k = 0; k < cuadros.length; k++) cuadros[k].classList.toggle('actual', k === i);
+    var c = cuadros[i];
+    var destino = c.offsetTop + c.offsetHeight / 2 - rollo.clientHeight / 2;
+    if (rollo.scrollTo) rollo.scrollTo({ top: destino, behavior: suave ? 'smooth' : 'auto' });
+    else rollo.scrollTop = destino;
+  }
+
+  function fijos(s, suave) {
     barra.style.width = ((i + 1) / N * 100) + '%';
     logo.classList.toggle('oculto', !!s.vista);
     frame.classList.toggle('en-inicio', !!s.inicio);
+    marcarRollo(suave !== false);
     try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
   }
 
@@ -212,6 +233,13 @@
   /* --- controles --------------------------------------------------- */
 
   document.addEventListener('mousedown', function (e) {
+    // Clic en el rollo: ir a esa diapositiva (nunca avanza un paso).
+    var cuadro = e.target.closest && e.target.closest('#rollo');
+    if (cuadro) {
+      var b = e.target.closest('[data-ir]');
+      if (e.button === 0 && b && !moviendo) ir(parseInt(b.getAttribute('data-ir'), 10), 0);
+      return;
+    }
     if (e.button !== 0 || moviendo) return;
     var s = SLIDES[i];
     if (s.clic && s.clic(e)) return;
@@ -220,6 +248,7 @@
 
   document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
+    if (e.target.closest && e.target.closest('#rollo')) return;
     volver();
   });
 
@@ -261,7 +290,7 @@
   var s0 = SLIDES[i];
   cam = vistaDe(s0);
   aplicar(cam);
-  fijos(s0);
+  fijos(s0, false);
   marca.classList.toggle('oculta', !s0.vista || !!s0.completa || !!s0.inicio);
   quieto(s0, -1);
   requestAnimationFrame(function () {

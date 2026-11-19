@@ -615,3 +615,27 @@ sup.ref{ font-size:.32em; font-weight:600; vertical-align:super; line-height:0; 
 .ac-linea{ fill:none; stroke:var(--negro); stroke-width:3; stroke-linejoin:round; stroke-linecap:round; }
 .ac-punto{ fill:var(--negro); }
 .ac-fin{ font-size:28px; font-weight:700; fill:var(--negro); }
+
+/* Rollo de diapositivas: margen izquierdo, fuera de la cámara */
+#rollo{
+  position:absolute; left:1em; top:3em; bottom:3em; width:3.2em; z-index:6;
+  display:flex; flex-direction:column; align-items:center; gap:.6em;
+  padding:1.2em 0; overflow-y:auto; scrollbar-width:none;
+  -webkit-mask-image:linear-gradient(transparent, #000 2.2em, #000 calc(100% - 2.2em), transparent);
+          mask-image:linear-gradient(transparent, #000 2.2em, #000 calc(100% - 2.2em), transparent);
+  transition:opacity .4s;
+}
+#rollo::-webkit-scrollbar{ display:none; }
+#rollo button{
+  flex:none; width:2.6em; height:2.6em; padding:0; border:0; border-radius:.45em;
+  background:var(--gris-claro); color:var(--gris);
+  font:600 1em/1 var(--body); font-variant-numeric:tabular-nums; cursor:pointer;
+  transition:background .2s, color .2s, transform .2s;
+}
+#rollo button:hover{ background:var(--gris-2); color:#fff; }
+#rollo button.actual{ background:var(--azul); color:#fff; transform:scale(1.12); }
+#frame.en-inicio #rollo{ opacity:0; pointer-events:none; }
+
+/* Video demo: ocupa el marco, sin recortar */
+.demo{ background:#0b0f14; border-radius:inherit; overflow:hidden; }
+.demo video{ width:100%; height:100%; display:block; object-fit:contain; background:#0b0f14; cursor:pointer; }

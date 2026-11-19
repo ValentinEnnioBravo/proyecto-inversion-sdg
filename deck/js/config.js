@@ -13,6 +13,7 @@ window.CONFIG = {
   // Imágenes
   logo: 'assets/imagenes/factura-ya.png',
   facturaEjemplo: 'assets/imagenes/factura.jfif',
+  videoDemo: 'assets/video/facturasya-recorrido.mp4',
 
   equipo: [
     { nombre: 'Valentín Ennio Bravo',       cargo: 'Socio mayoritario', foto: 'assets/imagenes/valentin.jfif' },
