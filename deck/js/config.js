@@ -12,6 +12,7 @@ window.CONFIG = {
 
   // Imágenes
   logo: 'assets/imagenes/factura-ya.png',
+  facturaEjemplo: 'assets/imagenes/factura.jfif',
 
   equipo: [
     { nombre: 'Valentín Ennio Bravo',       cargo: 'Socio mayoritario', foto: 'assets/imagenes/valentin.jfif' },
@@ -27,7 +28,7 @@ window.CONFIG = {
   audio: {},
   imagenes: [],
 
-  // Volumen general al abrir (0 a 1).
+  // Volumen de video y audio (0 a 1).
   volumen: 0.8,
   volumenCancion: 0.1
 };

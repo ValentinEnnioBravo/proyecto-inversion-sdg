@@ -3,8 +3,7 @@
    Todas las diapositivas viven en un lienzo con forma de factura.
    Avanzar mueve una cámara (escala + traslación) hasta el marco
    siguiente. Controles: clic izq. / → / Espacio avanzan,
-   clic der. / ← vuelven, Home portada, End cierre, F pantalla completa,
-   ruedita / ↑ ↓ volumen.
+   clic der. / ← vuelven, Home portada, End cierre, F pantalla completa.
 
    Contrato de cada diapositiva (SLIDES.push):
      id, zona, html(), pasos, paso(n, root, animar), entrar(root),
@@ -20,9 +19,6 @@
   var marca   = document.getElementById('marca');
   var logo    = document.getElementById('logo-fijo');
   var barra   = document.getElementById('progreso');
-  var volHud  = document.getElementById('vol');
-  var volFill = volHud.querySelector('.fill');
-  var volNum  = volHud.querySelector('.num');
 
   var N = SLIDES.length;
   var BASE = 1600;           // ancho nativo de un marco (1em = 16 px)
@@ -213,19 +209,6 @@
     ir(i - 1, pasosDe(SLIDES[i - 1]) - 1);
   }
 
-  /* --- volumen ----------------------------------------------------- */
-
-  var volTimer = null;
-  function ajustarVol(delta) {
-    Media.setVolumen(Media.getVolumen() + delta);
-    var v = Media.getVolumen();
-    volFill.style.height = Math.round(v * 100) + '%';
-    volNum.textContent = Math.round(v * 100);
-    volHud.classList.add('show');
-    clearTimeout(volTimer);
-    volTimer = setTimeout(function () { volHud.classList.remove('show'); }, 1100);
-  }
-
   /* --- controles --------------------------------------------------- */
 
   document.addEventListener('mousedown', function (e) {
@@ -240,11 +223,6 @@
     volver();
   });
 
-  document.addEventListener('wheel', function (e) {
-    e.preventDefault();
-    ajustarVol(e.deltaY > 0 ? -0.05 : 0.05);
-  }, { passive: false });
-
   document.addEventListener('keydown', function (e) {
     var s = SLIDES[i];
     if (e.key === 'Enter') {
@@ -254,8 +232,6 @@
     switch (e.key) {
       case 'ArrowRight': case 'PageDown': case ' ': avanzar(); break;
       case 'ArrowLeft':  case 'PageUp':            volver();  break;
-      case 'ArrowUp':    ajustarVol(0.05);  break;
-      case 'ArrowDown':  ajustarVol(-0.05); break;
       case 'Home': if (!(s.ocupado && s.ocupado())) ir(0, 0); break;
       case 'End':  if (!(s.ocupado && s.ocupado())) ir(N - 1, 0); break;
       case 'f': case 'F':

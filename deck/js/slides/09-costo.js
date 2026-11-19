@@ -1,32 +1,13 @@
 /* 08 · El costo de la carga manual — tres números, uno por paso -----
-   El tercero es el tiempo ahorrado por empleado: el tiempo medido con
-   el cronómetro (diapositiva 5) × 500 a 800 facturas por mes
-   (25 a 40 por día). Sin tiempo medido muestra un guión.
+   El tercero es el tiempo ahorrado por empleado por mes:
+   25 a 40 facturas por día (500 a 800 por mes, 20 días hábiles)
+   × 8 a 15 minutos por factura (diapositiva anterior).
    ------------------------------------------------------------------ */
 (function () {
 
-  var POR_MES = [500, 800];
-
-  function horas(ms, n) { return ms * n / 3600000; }
-
-  function actualizar(r) {
-    var ms = window.CRONO && CRONO.ms;
-    var els = [r.querySelector('[data-h0]'), r.querySelector('[data-h1]')];
-    els.forEach(function (el, k) {
-      if (!ms) {
-        el.removeAttribute('data-cuenta');
-        el.textContent = '—';
-        return;
-      }
-      var h = horas(ms, POR_MES[k]);
-      var dec = h < 10 ? 1 : 0;
-      el.setAttribute('data-cuenta', h.toFixed(dec));
-      el.setAttribute('data-dec', dec);
-      el.textContent = U.fmt(h, dec);
-    });
-    r.querySelector('[data-h-a]').style.display = ms ? '' : 'none';
-    r.querySelector('[data-h1]').style.display = ms ? '' : 'none';
-  }
+  var POR_MES = [500, 800];     // facturas por mes (25 a 40 por día × 20 días)
+  var MINUTOS = [8, 15];        // minutos por factura, carga manual
+  var H = [POR_MES[0] * MINUTOS[0] / 60, POR_MES[1] * MINUTOS[1] / 60];   // ≈ 67 y 200 horas
 
   SLIDES.push({
     id: 'costo',
@@ -46,8 +27,11 @@
                    '<p class="dato-txt">facturas por día por empleado</p>' +
                  '</div>' +
                  '<div class="dato azul-top" data-paso="2">' +
-                   '<p class="grande azul"><span class="num" data-h0>—</span><span class="a" data-h-a>a</span><span class="num" data-h1></span> <span class="unidad">horas</span></p>' +
+                   '<p class="grande azul">' + U.n(Math.round(H[0])) + '<span class="a">a</span>' + U.n(Math.round(H[1])) +
+                     ' <span class="unidad">horas</span></p>' +
                    '<p class="dato-txt">ahorradas por empleado por mes</p>' +
+                   '<p class="dato-sub">' + POR_MES[0] + ' a ' + POR_MES[1] + ' facturas por mes × ' +
+                     MINUTOS[0] + ' a ' + MINUTOS[1] + ' minutos cada una</p>' +
                  '</div>' +
                '</div>' +
                '<p class="fuentes">' +
@@ -55,12 +39,6 @@
                  '<span data-paso="1"> · <sup>2</sup>Según Lido (2026), con datos de APQC, Ardent Partners e IOFM</span>' +
                '</p>' +
              '</div>';
-    },
-
-    entrar: actualizar,
-
-    paso: function (n, r, animar) {
-      if (!animar) actualizar(r);
     }
   });
 })();

@@ -18,7 +18,7 @@ SLIDES.push({
              '</ol>' +
              '<div class="impl-datos">' +
                '<div class="impl-dato" data-paso="1"><span class="impl-et">Primera factura:</span><span class="impl-v">el mismo día del alta</span></div>' +
-               '<div class="impl-dato" data-paso="1" style="--d:250ms"><span class="impl-et">Operación completa:</span><span class="impl-v">menos de 2 semanas</span></div>' +
+               '<div class="impl-dato" data-paso="1" style="--d:250ms"><span class="impl-et">Configuración completa:</span><span class="impl-v">menos de 2 semanas</span></div>' +
              '</div>' +
            '</div>';
   }
