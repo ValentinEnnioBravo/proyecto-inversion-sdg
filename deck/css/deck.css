@@ -162,19 +162,18 @@ sup.ref{ font-size:.32em; font-weight:600; vertical-align:super; line-height:0; 
   background:var(--azul); transition:width .4s ease;
 }
 #logo-fijo{
-  position:absolute; right:1.6em; bottom:1.2em; width:6.25em;
-  mix-blend-mode:multiply;
+  position:absolute; right:1.6em; bottom:1.2em; width:6.6em;
   transition:opacity .4s; z-index:5; pointer-events:none;
 }
 #logo-fijo.oculto{ opacity:0; }
 
 #marca{
-  position:absolute; left:50%; right:5%; top:0; bottom:0;
+  position:absolute; left:50%; right:4%; top:0; bottom:0;
   display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
   transition:opacity .4s; z-index:4; pointer-events:none;
 }
 #marca.oculta{ opacity:0; }
-#marca img{ width:24em; margin:0 0 2.2em -1.2em; mix-blend-mode:multiply; }
+#marca img{ width:31em; margin:0 0 1.8em -.6em; }
 #marca p{ margin:0; }
 .m-slogan { font-size:3.6em; font-weight:700; letter-spacing:-.015em; line-height:1.08; }
 .m-bajada { font-size:2.4em; font-weight:600; color:var(--azul); margin-top:.5em !important; }
@@ -254,6 +253,8 @@ sup.ref{ font-size:.32em; font-weight:600; vertical-align:super; line-height:0; 
 .dato .grande{ font-size:5.4em; }
 .dato .a{ font-size:.5em; font-weight:600; color:var(--gris); margin:0 .2em; letter-spacing:0; }
 .dato-txt{ font-size:2.2em; line-height:1.3; font-weight:500; }
+.dato-txt b{ font-weight:700; color:var(--negro); }
+.dato-sub{ font-size:1.5em; line-height:1.35; color:var(--gris); font-weight:500; margin-top:-.3em !important; }
 .dato.azul-top{ border-top-color:var(--azul); }
 
 /* IA */
@@ -464,26 +465,45 @@ sup.ref{ font-size:.32em; font-weight:600; vertical-align:super; line-height:0; 
 .med-lbl{ font-size:1.4em; color:var(--gris); font-weight:600; letter-spacing:.05em; }
 
 /* Proyección */
-.proy{ display:grid; grid-template-columns:1fr 1fr; gap:5em; height:100%; }
-.graf{ display:flex; flex-direction:column; gap:1.2em; min-height:0; }
-.graf-t{ font-size:2.4em; font-weight:700; }
+.proy-slide{ padding:4.2em 5.5em 5.8em; gap:2em; }
+.proy-head{ display:flex; justify-content:space-between; align-items:center; gap:2em; flex-wrap:wrap; }
+.proy-titulo{ font-size:3.2em; }
+.proy-ley{ display:flex; gap:2.4em; font-size:1.55em; font-weight:600; color:var(--gris); }
+.proy-ley span{ display:flex; align-items:center; gap:.6em; }
+.proy-ley i{ display:inline-block; width:2.2em; height:0; border-top:4px solid var(--azul); }
+.proy-ley i.l-opt{ border-top:4px dashed #0F9D58; }
+.proy-ley i.l-cons{ border-top:4px dashed #8C95A2; }
+.proy{ display:grid; grid-template-columns:1fr 1fr; gap:5em; flex:1; min-height:0; }
+.proy.proy-3{ grid-template-columns:repeat(3,1fr); gap:2.8em; }
+.graf{ display:flex; flex-direction:column; gap:.9em; min-height:0; }
+.graf-t{ font-size:2.05em; font-weight:700; line-height:1.2; }
+.graf-t small{ font-size:.7em; font-weight:500; color:var(--gris); }
 .graf svg{ width:100%; flex:1; min-height:0; display:block; overflow:visible; }
 .graf .eje{ stroke:var(--negro); stroke-width:4; stroke-linecap:round; }
 .graf .grilla{ stroke:var(--gris-claro); stroke-width:3; stroke-linecap:round; }
 .graf .anio{ font-size:20px; fill:var(--gris); text-anchor:middle; font-weight:500; }
 .graf .base{ fill:none; stroke:var(--azul); stroke-width:6; stroke-linejoin:round; stroke-linecap:round; }
-.graf .alt{ fill:none; stroke:var(--gris-2); stroke-width:4; stroke-dasharray:2 12; stroke-linejoin:round; stroke-linecap:round; }
+.graf .alt{ fill:none; stroke:var(--gris-2); stroke-width:4; stroke-dasharray:8 8; stroke-linejoin:round; stroke-linecap:round; }
+.graf .alt.opt{ stroke:#0F9D58; }
+.graf .alt.cons{ stroke:#8C95A2; }
 .graf .pt{ fill:var(--azul); }
-.graf .ann{ font-size:26px; font-weight:700; fill:var(--negro); }
+.graf .pt-opt{ fill:#0F9D58; }
+.graf .pt-cons{ fill:#8C95A2; }
+.graf .ann{ font-size:22px; font-weight:700; fill:var(--negro); paint-order:stroke; stroke:rgba(255,255,255,.92); stroke-width:6px; stroke-linejoin:round; }
+.graf .ann-opt{ font-size:19px; font-weight:700; fill:#0B7A44; paint-order:stroke; stroke:rgba(255,255,255,.92); stroke-width:5px; stroke-linejoin:round; }
+.graf .ann-cons{ font-size:19px; font-weight:600; fill:var(--gris); paint-order:stroke; stroke:rgba(255,255,255,.92); stroke-width:5px; stroke-linejoin:round; }
 
 /* Flujo de caja */
+.caja-g .caja-titulo{ font-size:38px; font-weight:700; fill:var(--negro); }
+.caja-g .caja-cero-lbl{ font-size:21px; font-weight:600; fill:var(--gris); }
 .caja-g .cero{ stroke:var(--negro); stroke-width:4; stroke-linecap:round; }
 .caja-g .curva{ fill:none; stroke:var(--azul); stroke-width:8; stroke-linejoin:round; stroke-linecap:round; }
 .caja-g .vert{ fill:var(--negro); }
 .caja-g .anio{ font-size:24px; fill:var(--gris); text-anchor:middle; font-weight:500; }
-.caja-g .ann{ font-size:40px; font-weight:700; fill:var(--negro); }
+.caja-g .ann{ font-size:34px; font-weight:700; fill:var(--negro); }
+.caja-g .ann-sm{ font-size:24px; font-weight:600; fill:var(--gris); }
 .caja-g .rec circle{ fill:var(--azul); }
-.caja-g .rec text{ font-size:34px; font-weight:700; fill:var(--azul); }
+.caja-g .rec text{ font-size:30px; font-weight:700; fill:var(--azul); }
 
 /* Indicadores */
 .indic{ display:grid; grid-template-columns:1fr 1fr; gap:2.6em 3em; }
@@ -512,3 +532,82 @@ sup.ref{ font-size:.32em; font-weight:600; vertical-align:super; line-height:0; 
 .hito{ display:flex; flex-direction:column; gap:1.4em; border-top:6px solid var(--azul); border-radius:3px 3px 0 0; padding-top:1.8em; }
 .hito-f{ font-size:2em; color:var(--azul); font-weight:700; }
 .hito-t{ font-size:3em; font-weight:600; line-height:1.2; }
+
+/* Quiénes somos */
+.qs{ display:grid; grid-template-columns:36em 1fr; gap:5em; align-items:center; padding:5em 6.5em; }
+.qs-logo{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:.8em; padding:2.6em 2.2em; border-radius:2.4em; background:rgba(255,255,255,.85); border:4px solid var(--linea); }
+.qs-logo img{ width:28em; height:auto; display:block; }
+.qs-slogan{ font-size:2.2em; font-weight:700; color:var(--negro); margin-top:.4em !important; }
+.qs-bajada{ font-size:1.7em; font-weight:600; color:var(--azul); }
+.qs-col{ display:flex; flex-direction:column; gap:2em; }
+.qs-lead{ font-size:2.3em; line-height:1.35; color:var(--gris); font-weight:500; }
+.qs-lead b{ color:var(--negro); font-weight:700; }
+.qs-lista{ font-size:2.15em; gap:.7em; }
+
+/* Matriz de comparación (5 filas con nombres reales) */
+.comp-slide{ gap:1.8em; padding:4.2em 6em; }
+.matriz-5{ grid-template-columns:24em repeat(5,1fr); }
+.matriz-5 > div{ min-height:5.2em; }
+.matriz-5 .m-fila{ font-size:1.75em; min-height:3em; }
+.matriz-5 .m-col{ font-size:1.45em; min-height:4.4em; padding:.4em .5em; }
+.matriz-5 .m-col span{ display:flex; flex-direction:column; gap:.2em; align-items:center; }
+.matriz-5 .m-col small{ font-size:.78em; font-weight:500; color:var(--gris-2); }
+.matriz-5 .m-col.fy{ font-size:1.85em; }
+.matriz-5 .sim{ width:2.2em; height:2.2em; }
+
+/* Adquisición de clientes */
+.adq-slide{ gap:1.8em; padding:3.8em 6.5em 5.8em; justify-content:flex-start; }
+.adq-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1.8em 2.2em; }
+.adq-card{ border:4px solid var(--linea); border-radius:1.8em; padding:1.7em 2.1em; background:rgba(255,255,255,.72); display:flex; flex-direction:column; gap:.65em; }
+.adq-num{ font-size:1.5em; font-weight:700; color:var(--azul); letter-spacing:.04em; }
+.adq-t{ font-size:2.15em; font-weight:700; line-height:1.15; color:var(--negro); }
+.adq-p{ font-size:1.58em; line-height:1.36; color:var(--gris); font-weight:500; }
+.adq-p b{ color:var(--negro); font-weight:700; }
+
+/* Financiamiento requerido (Inversores) */
+.fin-slide{ gap:2em; padding:4.2em 6.5em 5.8em; }
+.fin-top{ display:grid; grid-template-columns:1.15fr 1fr 1fr; gap:2em; }
+.fin-card{ border:4px solid var(--linea); border-radius:1.6em; padding:1.6em 2em; background:rgba(255,255,255,.72); display:flex; flex-direction:column; gap:.5em; }
+.fin-card.principal{ border-color:var(--azul); background:var(--azul-fondo); }
+.fin-card .grande{ font-size:3.8em; }
+.fin-et{ font-size:1.45em; font-weight:600; color:var(--gris); }
+.fin-mid{ display:grid; grid-template-columns:1.1fr 1fr; gap:2.6em; align-items:stretch; }
+.fin-dev{ border:4px solid var(--linea); border-radius:1.6em; padding:1.8em 2.2em; background:rgba(255,255,255,.72); display:flex; flex-direction:column; gap:.7em; }
+.fin-mes{ font-size:3.5em; font-weight:700; color:var(--azul); line-height:1.05; font-variant-numeric:tabular-nums; }
+.fin-mes small{ font-size:.42em; font-weight:600; color:var(--gris); }
+.fin-anual{ font-size:1.6em; color:var(--negro); font-weight:500; }
+.fin-conds{ display:grid; grid-template-columns:1fr 1fr; gap:.55em 1.2em; margin-top:.4em; padding-top:.8em; border-top:3px solid var(--linea); font-size:1.45em; color:var(--gris); font-weight:500; }
+.fin-conds b{ color:var(--negro); font-weight:700; }
+.fin-tabla-wrap{ border:4px solid var(--linea); border-radius:1.6em; padding:1.6em 2em; background:rgba(255,255,255,.72); display:flex; flex-direction:column; gap:.8em; justify-content:center; }
+.fin-tabla{ width:100%; border-collapse:collapse; font-size:1.55em; font-variant-numeric:tabular-nums; }
+.fin-tabla th, .fin-tabla td{ padding:.45em .4em; text-align:right; border-bottom:2px solid var(--gris-claro); }
+.fin-tabla th:first-child, .fin-tabla td:first-child{ text-align:left; }
+.fin-tabla th{ font-weight:700; color:var(--gris); font-size:.9em; border-bottom:3px solid var(--linea); }
+.fin-tabla .fin-tot td{ font-weight:700; color:var(--azul); border-bottom:none; padding-top:.6em; border-top:3px solid var(--linea); }
+
+/* Capital de trabajo (WC) */
+.wc-slide{ gap:2em; padding:4.2em 6.5em 5.8em; }
+.wc-head{ display:flex; flex-direction:column; gap:.5em; }
+.wc-head .t-titulo{ font-size:3.6em; }
+.wc-sub{ font-size:1.7em; color:var(--gris); font-weight:500; }
+.wc-body{ display:grid; grid-template-columns:1.32fr 1fr; gap:3.4em; align-items:center; }
+.wc-lista{ display:flex; flex-direction:column; gap:1.15em; }
+.wc-fila{ display:flex; flex-direction:column; gap:.38em; }
+.wc-lbl{ display:flex; justify-content:space-between; align-items:baseline; gap:1em; font-size:1.5em; font-weight:600; }
+.wc-lbl b{ white-space:nowrap; font-variant-numeric:tabular-nums; }
+.wc-lbl small{ font-weight:500; color:var(--gris); }
+.wc-pista{ height:1.35em; border-radius:.7em; background:var(--gris-claro); overflow:hidden; }
+.wc-pista i{ display:block; height:100%; border-radius:.7em; }
+.wc-resumen{ display:flex; flex-direction:column; gap:1.1em; }
+.wc-box{ border:4px solid var(--linea); border-radius:1.4em; padding:1.25em 1.8em; background:rgba(255,255,255,.78); display:flex; flex-direction:column; gap:.25em; }
+.wc-box.neto{ border-color:var(--azul); background:var(--azul-fondo); }
+.wc-et{ font-size:1.4em; font-weight:600; color:var(--gris); }
+.wc-val{ font-size:3.2em; font-weight:700; line-height:1.05; font-variant-numeric:tabular-nums; }
+.wc-nota{ font-size:1.3em; line-height:1.35; color:var(--gris); font-weight:500; margin-top:.35em !important; }
+.wc-nota b{ color:var(--negro); font-weight:700; }
+
+/* Inversión leyenda con importes */
+.inv-ley div{ align-items:flex-start; }
+.inv-ley div i{ margin-top:.22em; }
+.inv-ley div span{ display:flex; flex-direction:column; gap:.15em; }
+.inv-ley div small{ font-size:.82em; color:var(--gris); font-weight:500; font-variant-numeric:tabular-nums; }

@@ -38,7 +38,8 @@
                '<div class="tres">' +
                  '<div class="dato" data-paso="0">' +
                    '<p class="grande">' + U.n(58.4, 1) + ' <span class="unidad">millones</span><sup class="ref">1</sup></p>' +
-                   '<p class="dato-txt">de facturas de compra por mes</p>' +
+                   '<p class="dato-txt">de facturas de compra por mes en <b>empresas formales con más de 10 empleados</b></p>' +
+                   '<p class="dato-sub">85.540 empresas pequeñas, medianas y grandes en Argentina</p>' +
                  '</div>' +
                  '<div class="dato" data-paso="1">' +
                    '<p class="grande">' + U.n(25) + '<span class="a">a</span>' + U.n(40) + '<sup class="ref">2</sup></p>' +

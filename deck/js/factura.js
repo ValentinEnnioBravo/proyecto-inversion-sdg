@@ -19,13 +19,13 @@ window.Factura = (function () {
   // Zonas: rectángulo de la zona y lugares para los marcos.
   var ZONAS = {
     vista:      { rect: { x: 0,    y: 0,    w: W,    h: H    }, lugares: [] },
-    encabezado: { rect: { x: 0,    y: 0,    w: W,    h: 1008 }, lugares: grilla(133, 300, 1191, 3, 1, 80, 0) },
+    encabezado: { rect: { x: 0,    y: 0,    w: W,    h: 1008 }, lugares: grilla(100, 385, 910, 4, 1, 53, 0) },
     receptor:   { rect: { x: 0,    y: 1008, w: W,    h: 560  }, lugares: grilla(100, 1120, 720, 5, 1, 50, 0) },
     items:      { rect: { x: 0,    y: 1568, w: W,    h: 1904 }, lugares: grilla(380, 1712, 555, 1, 5, 0, 40) },
     cae:        { rect: { x: 0,    y: 3472, w: 2200, h: 1568 }, lugares: grilla(81, 3653, 666, 3, 3, 40, 40) },
     subtotales: { rect: { x: 2200, y: 3472, w: 1800, h: 1008 }, lugares: grilla(2242, 3496, 539, 3, 3, 30, 25) },
     importe:    { rect: { x: 2200, y: 4480, w: 1800, h: 336  }, lugares: grilla(2253, 4572, 391, 4, 1, 30, 0) },
-    total:      { rect: { x: 2200, y: 4816, w: 1800, h: 224  }, lugares: grilla(3290, 4853, 267, 2, 1, 30, 0) }
+    total:      { rect: { x: 2200, y: 4816, w: 1800, h: 224  }, lugares: grilla(3000, 4856, 267, 3, 1, 24, 0) }
   };
 
   // Asigna a cada diapositiva su marco (s.rect) y el rectángulo de su zona.
@@ -133,7 +133,7 @@ window.Factura = (function () {
     /* Total a pagar ------------------------------------------------- */
     h += lineaH(2200, 4814, 1760);
     h += caja(2240, 4836, 1680, 184, 'border:8px solid var(--gris-2);border-radius:36px');
-    h += texto(2290, 4892, 960, 'font-size:62px;font-weight:700;color:var(--gris);letter-spacing:.04em', 'TOTAL A PAGAR');
+    h += texto(2290, 4892, 680, 'font-size:62px;font-weight:700;color:var(--gris);letter-spacing:.04em', 'TOTAL A PAGAR');
 
     /* Pie ----------------------------------------------------------- */
     h += lineaH(40, 5038, W - 80);

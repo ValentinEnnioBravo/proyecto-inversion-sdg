@@ -15,12 +15,12 @@ SLIDES.push({
 
     // [nombre, facilidad, controles, posición de la etiqueta: [dx, dy, anclaje]]
     var C = [
-      ['Soluciones globales', 2, 8, [26, 0, 'start']],
-      ['Soluciones a medida', 3, 7, [-26, 0, 'end']],
-      ['Módulo del ERP',      5, 5, [26, 0, 'start']],
-      ['Mis Comprobantes',    7, 3, [-26, 0, 'end']],
-      ['Chat de IA',          8, 3, [26, -4, 'start']],
-      ['Carga manual',        8, 2, [26, 4, 'start']]
+      ['Bill.com / Tipalti',         2, 8, [26, 0, 'start']],
+      ['Textract / Document AI',     3, 7, [0, 36, 'middle']],
+      ['Tango Nexo / Xubio',         5, 5, [26, 0, 'start']],
+      ['Mis Comprobantes (ARCA)',    7, 3, [-26, 0, 'end']],
+      ['ChatGPT / Gemini',           8, 3, [26, -4, 'start']],
+      ['Carga manual',               8, 2, [26, 4, 'start']]
     ];
 
     var s = '<g class="fundido" data-paso="0">' +
