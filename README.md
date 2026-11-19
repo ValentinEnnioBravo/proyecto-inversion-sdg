@@ -12,13 +12,18 @@ una cámara virtual hasta el marco siguiente.
 |---|---|
 | Avanzar (paso o diapositiva) | Clic izquierdo · → · Espacio · PageDown |
 | Volver | Clic derecho · ← · PageUp |
-| Cronómetro (diapositiva 5) | Enter o clic sobre el cronómetro: arranca / frena |
 | Portada / cierre | Home / End |
 | Pantalla completa | F |
-| Ir a una diapositiva | `presentacion.html#12` |
+| Ir a una diapositiva | Clic en su número, en la tira de la izquierda · `presentacion.html#12` |
 
-Mientras el cronómetro corre, la presentación no avanza. El tiempo se guarda en
-`localStorage` y reaparece en las diapositivas 7 y 8 (tiempo ahorrado por empleado).
+La diapositiva 7 hace una pregunta al público; al avanzar gira sobre sí misma y muestra
+cuánto tarda cargar una factura a mano (8 a 15 minutos). La 8 usa ese tiempo para
+calcular las horas ahorradas por empleado por mes.
+
+La diapositiva 12 reproduce el video de demostración (`assets/video/facturasya-recorrido.mp4`),
+sin sonido y a velocidad x1,5.
+Arranca al llegar y se frena al salir. Tiene los controles del navegador (play, barra de tiempo, velocidad); para
+seguir, → o Espacio.
 
 ## Estructura
 
@@ -30,7 +35,7 @@ deck/js/config.js        Textos de marca, rutas de imágenes y equipo
 deck/js/utils.js         Registro SLIDES, formato argentino, revelado por pasos
 deck/js/factura.js       Lienzo: zonas, grilla de marcos y dibujo de la factura
 deck/js/deck.js          Cámara, navegación y controles
-deck/js/slides/          Una diapositiva por archivo (01 a 34)
+deck/js/slides/          Una diapositiva por archivo (00 a 35; una puede agregar varias)
 ```
 
 ## Contrato de una diapositiva

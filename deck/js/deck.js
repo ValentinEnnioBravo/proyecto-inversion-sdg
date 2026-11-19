@@ -3,8 +3,7 @@
    Todas las diapositivas viven en un lienzo con forma de factura.
    Avanzar mueve una cámara (escala + traslación) hasta el marco
    siguiente. Controles: clic izq. / → / Espacio avanzan,
-   clic der. / ← vuelven, Home portada, End cierre, F pantalla completa,
-   ruedita / ↑ ↓ volumen.
+   clic der. / ← vuelven, Home portada, End cierre, F pantalla completa.
 
    Contrato de cada diapositiva (SLIDES.push):
      id, zona, html(), pasos, paso(n, root, animar), entrar(root),
@@ -20,9 +19,6 @@
   var marca   = document.getElementById('marca');
   var logo    = document.getElementById('logo-fijo');
   var barra   = document.getElementById('progreso');
-  var volHud  = document.getElementById('vol');
-  var volFill = volHud.querySelector('.fill');
-  var volNum  = volHud.querySelector('.num');
 
   var N = SLIDES.length;
   var BASE = 1600;           // ancho nativo de un marco (1em = 16 px)
@@ -157,10 +153,31 @@
 
   /* --- mobiliario fijo -------------------------------------------- */
 
-  function fijos(s) {
+  /* Rollo: tira vertical de cuadrados numerados en el margen izquierdo.
+     El actual se resalta y queda centrado; clic en otro lleva a esa
+     diapositiva. */
+  var rollo = document.createElement('nav');
+  rollo.id = 'rollo';
+  rollo.setAttribute('aria-label', 'Diapositivas');
+  rollo.innerHTML = SLIDES.map(function (s, k) {
+    return '<button type="button" data-ir="' + k + '">' + (k + 1) + '</button>';
+  }).join('');
+  frame.appendChild(rollo);
+  var cuadros = rollo.querySelectorAll('[data-ir]');
+
+  function marcarRollo(suave) {
+    for (var k = 0; k < cuadros.length; k++) cuadros[k].classList.toggle('actual', k === i);
+    var c = cuadros[i];
+    var destino = c.offsetTop + c.offsetHeight / 2 - rollo.clientHeight / 2;
+    if (rollo.scrollTo) rollo.scrollTo({ top: destino, behavior: suave ? 'smooth' : 'auto' });
+    else rollo.scrollTop = destino;
+  }
+
+  function fijos(s, suave) {
     barra.style.width = ((i + 1) / N * 100) + '%';
     logo.classList.toggle('oculto', !!s.vista);
     frame.classList.toggle('en-inicio', !!s.inicio);
+    marcarRollo(suave !== false);
     try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
   }
 
@@ -213,22 +230,16 @@
     ir(i - 1, pasosDe(SLIDES[i - 1]) - 1);
   }
 
-  /* --- volumen ----------------------------------------------------- */
-
-  var volTimer = null;
-  function ajustarVol(delta) {
-    Media.setVolumen(Media.getVolumen() + delta);
-    var v = Media.getVolumen();
-    volFill.style.height = Math.round(v * 100) + '%';
-    volNum.textContent = Math.round(v * 100);
-    volHud.classList.add('show');
-    clearTimeout(volTimer);
-    volTimer = setTimeout(function () { volHud.classList.remove('show'); }, 1100);
-  }
-
   /* --- controles --------------------------------------------------- */
 
   document.addEventListener('mousedown', function (e) {
+    // Clic en el rollo: ir a esa diapositiva (nunca avanza un paso).
+    var cuadro = e.target.closest && e.target.closest('#rollo');
+    if (cuadro) {
+      var b = e.target.closest('[data-ir]');
+      if (e.button === 0 && b && !moviendo) ir(parseInt(b.getAttribute('data-ir'), 10), 0);
+      return;
+    }
     if (e.button !== 0 || moviendo) return;
     var s = SLIDES[i];
     if (s.clic && s.clic(e)) return;
@@ -237,13 +248,9 @@
 
   document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
+    if (e.target.closest && e.target.closest('#rollo')) return;
     volver();
   });
-
-  document.addEventListener('wheel', function (e) {
-    e.preventDefault();
-    ajustarVol(e.deltaY > 0 ? -0.05 : 0.05);
-  }, { passive: false });
 
   document.addEventListener('keydown', function (e) {
     var s = SLIDES[i];
@@ -254,8 +261,6 @@
     switch (e.key) {
       case 'ArrowRight': case 'PageDown': case ' ': avanzar(); break;
       case 'ArrowLeft':  case 'PageUp':            volver();  break;
-      case 'ArrowUp':    ajustarVol(0.05);  break;
-      case 'ArrowDown':  ajustarVol(-0.05); break;
       case 'Home': if (!(s.ocupado && s.ocupado())) ir(0, 0); break;
       case 'End':  if (!(s.ocupado && s.ocupado())) ir(N - 1, 0); break;
       case 'f': case 'F':
@@ -285,7 +290,7 @@
   var s0 = SLIDES[i];
   cam = vistaDe(s0);
   aplicar(cam);
-  fijos(s0);
+  fijos(s0, false);
   marca.classList.toggle('oculta', !s0.vista || !!s0.completa || !!s0.inicio);
   quieto(s0, -1);
   requestAnimationFrame(function () {

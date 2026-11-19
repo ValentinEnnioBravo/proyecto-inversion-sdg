@@ -12,7 +12,7 @@
     { hora: 'A media tarde',  txt: 'Una factura vencida hace 10 días' },
     { hora: 'A fin de mes',   txt: '2 días para controlar el mes' }
   ];
-  var X = [5, 29, 53, 77];            // % del ancho
+  var X = [4, 29.5, 55, 80.5];        // % del ancho
   var BAJADA = [40, 106, 172, 238];   // px de cada línea vertical
 
   SLIDES.push({
@@ -33,7 +33,10 @@
       }).join('');
 
       return '<div class="slide dia">' +
-               '<p class="dia-caso" data-paso="0"><b>Distribuidora con 900 facturas de compra por mes</b></p>' +
+               '<div class="dia-head" data-paso="0">' +
+                 '<p class="dia-sup">Problema diario de nuestro cliente</p>' +
+                 '<p class="dia-caso"><b>Distribuidora con 900 facturas de compra por mes</b></p>' +
+               '</div>' +
                '<div class="lt">' +
                  '<i class="lt-linea barra-h" data-paso="0" style="--t:1.2s;left:' + X[0] + '%;width:' + (X[3] - X[0]) + '%"></i>' +
                  pts +

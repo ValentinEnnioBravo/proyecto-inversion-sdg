@@ -3,8 +3,9 @@
    0  Canales de entrada → FacturasYa
    1  Validación ARCA y Control de duplicados (debajo de FacturasYa)
    2  Salidas (Tango, ERP, Excel) y la fila de estados
-   3  Una factura llega por mail            (sin estado)
-   4  Entra a FacturasYa                    → Recibida
+      ("Control del ciclo de vida")
+   3  Una factura llega por mail            → Recibida
+   4  Entra a FacturasYa                    → Observada
    5  Pasa la validación                    → Aprobada
    6  Llega al sistema del cliente          → Pagada
    ------------------------------------------------------------------ */
@@ -17,7 +18,7 @@
     5: [960, 530],    // a la salida de la validación
     6: [1468, 132]    // junto a Tango
   };
-  var ESTADO = { 4: 'Recibida', 5: 'Aprobada', 6: 'Pagada' };
+  var ESTADO = { 3: 'Recibida', 4: 'Observada', 5: 'Aprobada', 6: 'Pagada' };
   var ESTADOS = ['Recibida', 'Observada', 'Aprobada', 'Pagada'];
 
   function ubicar(g, pos, sinTransicion) {
@@ -73,7 +74,8 @@
       s += caja(1180, 210, 240, 84, ['ERP'], 2, 830);
       s += caja(1180, 330, 240, 84, ['Excel'], 2, 910);
 
-      var est = '<g class="fundido" data-paso="2" style="--d:1100ms">';
+      var est = '<g class="fundido" data-paso="2" style="--d:1100ms">' +
+                  '<text class="t-ciclo" x="800" y="652">Control del ciclo de vida</text>';
       ESTADOS.forEach(function (e, k) {
         var x = 230 + k * 300;
         if (k > 0) est += '<line class="conector" x1="' + (x - 56) + '" y1="725" x2="' + (x - 4) + '" y2="725"/>';
