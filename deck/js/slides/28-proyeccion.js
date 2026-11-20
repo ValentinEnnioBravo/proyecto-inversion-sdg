@@ -158,7 +158,7 @@
       base:        [28, 85, 139, 194, 251],
       optimista:   [52, 165, 287, 423, 579]
     }, 620, cant);
-  });
+  }, false);
 
   diapositiva('proyeccion-ventas', 'Ventas anuales', LEY3, function () {
     return grafico('29b', {
@@ -166,7 +166,7 @@
       base:        [40881, 290035, 545859, 801972, 1071421],
       optimista:   [74865, 552856, 1099483, 1710416, 2414753]
     }, 2600000, usd);
-  });
+  }, false);
 
   // Rubros (USD, escenario base) — suman el total de la tabla de costos de Comercial (2):
   //   Personal = capital humano · Marketing y comisiones = pauta + comisiones a estudios + comisión del vendedor

@@ -240,8 +240,6 @@ Desde el lanzamiento se ofrecen tres incentivos, pensados para clientes que no q
 - **Precio fundador por 12 meses:** los primeros clientes mantienen su precio durante un año.
 - **Pago anual con 2 meses bonificados:** el abono anual cubre doce meses y cobra diez.
 
-La pauta digital en Google Ads y LinkedIn Ads crece con la operación: USD 1.400 por mes en el año 1, USD 2.400 en el año 2 y USD 3.400 en el año 3.
-
 ## Modelo de negocio
 
 ### 26. Planes
