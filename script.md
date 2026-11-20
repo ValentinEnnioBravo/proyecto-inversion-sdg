@@ -237,7 +237,7 @@ Fuentes: Comercial (1), Ansoff y sensibilidad; Comercial (2), plaza, promoción 
 Desde el lanzamiento se ofrecen tres incentivos, pensados para clientes que no quieren pagar antes de ver resultados:
 
 - **Primeras 100 facturas gratis:** la prueba elimina el costo inicial.
-- **Precio fundador por 12 meses:** los primeros clientes mantienen su precio durante un año.
+- **Precio fundador vitalicio:** los primeros clientes mantienen la tarifa en dólares del plan contratado mientras conserven la suscripción activa, aunque aumente la tarifa para nuevas contrataciones. El importe facturado en pesos varía con el tipo de cambio oficial. La bonificación de dos meses por pago anual se aplica sobre esa tarifa.
 - **Pago anual con 2 meses bonificados:** el abono anual cubre doce meses y cobra diez.
 
 ## Modelo de negocio
