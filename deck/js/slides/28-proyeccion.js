@@ -80,8 +80,6 @@
 
     ANIOS.forEach(function (a, k) {
       s += '<text class="anio" x="' + px(k) + '" y="' + (y0 + 48) + '">' + a + '</text>';
-      s += '<text class="fila-v fundido" data-paso="0" style="--d:' + (300 + k * 200) + 'ms" x="' + px(k) + '" y="' + (y0 + 108) + '">' +
-             fmt(totales[k]) + '</text>';
     });
 
     // Barras: un rubro por barra, 5 por año
