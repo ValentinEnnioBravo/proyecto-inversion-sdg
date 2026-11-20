@@ -503,6 +503,20 @@ sup.ref{ font-size:.32em; font-weight:600; vertical-align:super; line-height:0; 
 .graf-1 .fin-cons{ fill:var(--gris); }
 .graf-1 .fin-base{ fill:var(--azul); }
 .graf-1 .fin-et{ font-size:21px; font-weight:600; fill:var(--gris); letter-spacing:.03em; }
+/* Costos operativos: barras por rubro (paleta del deck) */
+.graf-1 .pt-val{ text-anchor:middle; paint-order:stroke; stroke:rgba(255,255,255,.92); stroke-width:6px; stroke-linejoin:round; }
+.graf-1 .cb-1{ fill:var(--azul-osc); }
+.graf-1 .cb-2{ fill:var(--azul-med); }
+.graf-1 .cb-3{ fill:var(--azul-claro); }
+.graf-1 .cb-4{ fill:var(--gris); }
+.graf-1 .cb-5{ fill:var(--gris-2); }
+.proy-ley-c{ display:grid; grid-template-columns:repeat(4,auto); justify-content:end; justify-items:start; gap:.7em 1.8em; font-size:1.3em; }
+.proy-ley i.l-cb{ width:.95em; height:.95em; border:0; border-radius:.15em; }
+.proy-ley i.l-cb.c1{ background:var(--azul-osc); }
+.proy-ley i.l-cb.c2{ background:var(--azul-med); }
+.proy-ley i.l-cb.c3{ background:var(--azul-claro); }
+.proy-ley i.l-cb.c4{ background:var(--gris); }
+.proy-ley i.l-cb.c5{ background:var(--gris-2); }
 
 /* Flujo de caja */
 .caja-g .caja-titulo{ font-size:38px; font-weight:700; fill:var(--negro); }
