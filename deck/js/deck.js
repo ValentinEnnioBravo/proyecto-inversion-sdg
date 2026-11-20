@@ -21,14 +21,21 @@
   var barra   = document.getElementById('progreso');
 
   var N = SLIDES.length;
+  var N_MAIN = 0;
+  for (var idx = 0; idx < N; idx++) { if (!SLIDES[idx].backup) N_MAIN++; }
   var BASE = 1600;           // ancho nativo de un marco (1em = 16 px)
   var MARGEN = 1.1;          // 5 % de margen por lado
 
   var i = 0, p = 0;
+  var origenBkp = N_MAIN - 1;
   var cam = null;
   var moviendo = false;
 
   function pasosDe(s) { return s.pasos || 1; }
+  function indiceDe(id) {
+    for (var k = 0; k < N; k++) if (SLIDES[k].id === id) return k;
+    return -1;
+  }
 
   /* --- armado ------------------------------------------------------ */
 
@@ -49,7 +56,7 @@
   SLIDES.forEach(function (s) {
     if (s.vista) { s.root = lienzo; return; }
     var m = document.createElement('div');
-    m.className = 'marco';
+    m.className = 'marco' + (s.backup ? ' es-bkp' : '');
     m.id = 'marco-' + s.id;
     m.style.left = s.rect.x + 'px';
     m.style.top = s.rect.y + 'px';
@@ -159,7 +166,7 @@
   var rollo = document.createElement('nav');
   rollo.id = 'rollo';
   rollo.setAttribute('aria-label', 'Diapositivas');
-  rollo.innerHTML = SLIDES.map(function (s, k) {
+  rollo.innerHTML = SLIDES.slice(0, N_MAIN).map(function (s, k) {
     return '<button type="button" data-ir="' + k + '">' + (k + 1) + '</button>';
   }).join('');
   frame.appendChild(rollo);
@@ -168,15 +175,18 @@
   function marcarRollo(suave) {
     for (var k = 0; k < cuadros.length; k++) cuadros[k].classList.toggle('actual', k === i);
     var c = cuadros[i];
+    if (!c) return;
     var destino = c.offsetTop + c.offsetHeight / 2 - rollo.clientHeight / 2;
     if (rollo.scrollTo) rollo.scrollTo({ top: destino, behavior: suave ? 'smooth' : 'auto' });
     else rollo.scrollTop = destino;
   }
 
   function fijos(s, suave) {
-    barra.style.width = ((i + 1) / N * 100) + '%';
+    var prog = s.backup ? 100 : ((i + 1) / N_MAIN * 100);
+    barra.style.width = prog + '%';
     logo.classList.toggle('oculto', !!s.vista);
     frame.classList.toggle('en-inicio', !!s.inicio);
+    frame.classList.toggle('en-bkp', !!s.backup);
     marcarRollo(suave !== false);
     try { history.replaceState(null, '', '#' + (i + 1)); } catch (e) {}
   }
@@ -187,6 +197,11 @@
     if (moviendo || nuevo === i || nuevo < 0 || nuevo >= N) return;
     var a = SLIDES[i], b = SLIDES[nuevo];
     if (a.salir) a.salir(nuevo > i);
+
+    if (b.backup) {
+      if (!a.backup) origenBkp = i;
+      lienzo.classList.add('en-bkp');
+    }
 
     quieto(b, -1);                      // el destino arranca oculto
     i = nuevo;
@@ -206,6 +221,7 @@
       moverCamara(vistaDe(b), a.zonaRect, b.zonaRect, cambio, cambio ? 1400 : 700, function () {
         moviendo = false;
         if (!a.vista) quieto(a, pasosDe(a) - 1);   // de lejos, la factura se ve llena
+        if (!b.backup) lienzo.classList.remove('en-bkp');
         if (b.vista && !b.completa && !b.inicio) marca.classList.remove('oculta');
         if (b.entrar) b.entrar(b.root);
         pintarPaso(b, p, true);
@@ -213,11 +229,23 @@
     }, demora);
   }
 
+  function irBkp(id) {
+    var dest = indiceDe(id || 'bkp-indice');
+    if (dest >= 0) ir(dest, 0);
+  }
+
+  function volverDeBkp() {
+    var dest = (origenBkp >= 0 && origenBkp < N_MAIN) ? origenBkp : (N_MAIN - 1);
+    ir(dest, 0);
+  }
+
   function avanzar() {
     if (moviendo) return;
     var s = SLIDES[i];
     if (s.ocupado && s.ocupado()) return;
     if (p < pasosDe(s) - 1) { p++; pintarPaso(s, p, true); return; }
+    if (s.backup) return;                 // dentro del backup no salta solo a otra pregunta
+    if (i >= N_MAIN - 1) return;          // en el cierre termina el recorrido normal
     ir(i + 1, 0);
   }
 
@@ -226,6 +254,11 @@
     var s = SLIDES[i];
     if (s.ocupado && s.ocupado()) return;
     if (p > 0) { p--; pintarPaso(s, p, true); return; }
+    if (s.backup) {
+      if (s.id === 'bkp-indice') volverDeBkp();
+      else irBkp('bkp-indice');
+      return;
+    }
     if (i === 0) return;
     ir(i - 1, pasosDe(SLIDES[i - 1]) - 1);
   }
@@ -241,6 +274,17 @@
       return;
     }
     if (e.button !== 0 || moviendo) return;
+    // Acceso discreto al backup de preguntas: clic en "Pág. 1/1" o en el logo inferior derecho
+    var t = e.target;
+    if (t && (t === logo || (t.closest && t.closest('[data-bkp-trigger]')))) {
+      if (SLIDES[i].backup) {
+        if (SLIDES[i].id === 'bkp-indice') volverDeBkp();
+        else irBkp('bkp-indice');
+      } else {
+        irBkp('bkp-indice');
+      }
+      return;
+    }
     var s = SLIDES[i];
     if (s.clic && s.clic(e)) return;
     avanzar();
@@ -258,11 +302,29 @@
       if (!moviendo && s.tecla && s.tecla(e)) e.preventDefault();
       return;
     }
+    if (e.key === 'q' || e.key === 'Q' || e.key === 'b' || e.key === 'B') {
+      if (!moviendo && !(s.ocupado && s.ocupado())) {
+        if (s.backup && s.id === 'bkp-indice') volverDeBkp();
+        else irBkp('bkp-indice');
+        e.preventDefault();
+      }
+      return;
+    }
+    if (e.key === 'Escape' && s.backup) {
+      if (!moviendo) volverDeBkp();
+      e.preventDefault();
+      return;
+    }
+    if (s.backup && e.key >= '1' && e.key <= '6') {
+      if (!moviendo) irBkp('bkp-' + e.key);
+      e.preventDefault();
+      return;
+    }
     switch (e.key) {
       case 'ArrowRight': case 'PageDown': case ' ': avanzar(); break;
       case 'ArrowLeft':  case 'PageUp':            volver();  break;
       case 'Home': if (!(s.ocupado && s.ocupado())) ir(0, 0); break;
-      case 'End':  if (!(s.ocupado && s.ocupado())) ir(N - 1, 0); break;
+      case 'End':  if (!(s.ocupado && s.ocupado())) ir(N_MAIN - 1, 0); break;
       case 'f': case 'F':
         if (document.fullscreenElement) document.exitFullscreen();
         else document.documentElement.requestFullscreen();
@@ -288,6 +350,7 @@
   i = ini >= 1 && ini <= N ? ini - 1 : 0;
   p = 0;
   var s0 = SLIDES[i];
+  if (s0.backup) lienzo.classList.add('en-bkp');
   cam = vistaDe(s0);
   aplicar(cam);
   fijos(s0, false);
@@ -298,6 +361,10 @@
     pintarPaso(s0, 0, true);
   });
 
-  // Acceso para pruebas desde la consola.
-  window.Deck = { ir: ir, avanzar: avanzar, volver: volver, estado: function () { return { i: i, p: p, moviendo: moviendo }; } };
+  // Acceso para pruebas y navegación del backup.
+  window.Deck = {
+    ir: ir, irBkp: irBkp, volverDeBkp: volverDeBkp,
+    avanzar: avanzar, volver: volver,
+    estado: function () { return { i: i, p: p, moviendo: moviendo, nMain: N_MAIN }; }
+  };
 })();

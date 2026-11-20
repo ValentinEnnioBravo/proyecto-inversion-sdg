@@ -25,7 +25,8 @@ window.Factura = (function () {
     cae:        { rect: { x: 0,    y: 3472, w: 2200, h: 1568 }, lugares: grilla(81, 3653, 666, 3, 3, 40, 40) },
     subtotales: { rect: { x: 2200, y: 3472, w: 1800, h: 1008 }, lugares: grilla(2242, 3496, 539, 3, 3, 30, 25) },
     importe:    { rect: { x: 2200, y: 4480, w: 1800, h: 336  }, lugares: grilla(2253, 4580, 262, 6, 1, 24, 0) },
-    total:      { rect: { x: 2200, y: 4816, w: 1800, h: 224  }, lugares: grilla(3030, 4872, 200, 4, 1, 20, 0) }
+    total:      { rect: { x: 2200, y: 4816, w: 1800, h: 224  }, lugares: grilla(3030, 4872, 200, 4, 1, 20, 0) },
+    bkp:        { rect: { x: 40,   y: 5038, w: 3920, h: 522  }, lugares: grilla(110, 5278, 416, 7, 1, 144, 0) }
   };
 
   // Asigna a cada diapositiva su marco (s.rect) y el rectángulo de su zona.
@@ -139,7 +140,8 @@ window.Factura = (function () {
     h += lineaH(40, 5038, W - 80);
     h += texto(110, 5120, 2400, 'font-size:44px;font-weight:700;color:var(--gris)', 'Comprobante Autorizado');
     h += texto(110, 5200, 3000, L, 'Sistemas de Gestión K5572 · Grupo 3 · 2026');
-    h += texto(3500, 5120, 400, L + ';text-align:right', 'Pág. 1/1');
+    h += '<div class="f f-txt bkp-trigger" data-bkp-trigger style="left:3360px;top:5080px;width:580px;padding:40px 40px 40px 0;' +
+         L + ';text-align:right">Pág. 1/1</div>';
 
     /* Etiqueta APROBADA (diapositiva de cierre) --------------------- */
     h += '<div id="aprobada" class="f">APROBADA</div>';
