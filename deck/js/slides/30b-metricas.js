@@ -36,6 +36,7 @@ SLIDES.push({
                '<div class="ind" data-paso="2">' +
                  '<p class="ind-n">Regla del 40 · 2031</p>' +
                  '<p class="grande azul">' + U.n(86.2, 1) + '%</p>' +
+                 '<p class="mt-e">' + U.fmt(33.6, 1) + '% crecimiento<br>+ ' + U.fmt(52.6, 1) + '% margen EBITDA</p>' +
                '</div>' +
 
              '</div>' +
