@@ -80,7 +80,6 @@
                  '<p data-paso="4" style="--d:150ms">TIR <b class="azul">' + U.n(41.65, 2) + '%</b></p>' +
                  '<p data-paso="4" style="--d:300ms">VAN <b>USD ' + U.n(195564) + '</b></p>' +
                '</div>' +
-               '<p class="fuentes"><span data-paso="4">Escenario base. Fuente: flujo de fondos del accionista del proyecto</span></p>' +
              '</div>';
     }
   });

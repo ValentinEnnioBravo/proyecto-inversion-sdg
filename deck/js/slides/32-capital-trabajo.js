@@ -61,9 +61,6 @@ SLIDES.push({
                '<h2 class="t-titulo">En qué se va el capital de trabajo (WC)</h2>' +
                '<p class="wc-sub">Egresos operativos de los meses 1 a 18 (ene 2027 – jun 2028): <b>USD ' + U.n(234286) + '</b></p>' +
              '</div>' +
-             '<p class="fuentes">' +
-               '<span data-paso="0">Fuente: Flujo de Fondos.xlsx (hoja WC, meses 1 a 18) y Flujo de Fondos.docx</span>' +
-             '</p>' +
            '</div>';
   }
 });

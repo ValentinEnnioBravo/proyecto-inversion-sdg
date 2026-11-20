@@ -65,9 +65,6 @@ SLIDES.push({
 
     return '<div class="slide lleno svg-full caja-g">' +
              '<svg viewBox="0 0 1600 900">' + s + '</svg>' +
-             '<p class="fuentes" style="bottom:1.2em">' +
-               '<span data-paso="0">Fuente: Flujo de Fondos.xlsx (hoja Egresos, flujo acumulado del proyecto puro)</span>' +
-             '</p>' +
            '</div>';
   }
 });
