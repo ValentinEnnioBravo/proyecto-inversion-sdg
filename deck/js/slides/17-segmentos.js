@@ -1,7 +1,7 @@
 /* 16 · Segmentos ---------------------------------------------------
    Barra horizontal que crece por tramos B, C y D (proporcional al
-   ingreso potencial anual). El tramo D, el de mayor ingreso, va en el
-   azul del logo y se marca como segmento principal.
+   ingreso potencial anual). El tramo C, foco comercial, va en el azul del logo y se marca
+   como segmento principal.
    ------------------------------------------------------------------ */
 SLIDES.push({
   id: 'segmentos',
@@ -11,8 +11,8 @@ SLIDES.push({
   html: function () {
     var S = [
       { l: 'B', n: 'Pequeña', emp: 65581, sup: '1', usd: '118,0', m: 118.0, color: '#D5DAE1' },
-      { l: 'C', n: 'Mediana', emp: 10089, sup: '1', usd: '49,0',  m: 49.0,  color: '#B3BAC4' },
-      { l: 'D', n: 'Grande',  emp: 9870,  sup: '2', usd: '142,1', m: 142.1, color: 'var(--azul)', principal: true }
+      { l: 'C', n: 'Mediana', emp: 10089, sup: '1', usd: '49,0',  m: 49.0,  color: 'var(--azul)', principal: true },
+      { l: 'D', n: 'Grande',  emp: 9870,  sup: '2', usd: '142,1', m: 142.1, color: '#B3BAC4' }
     ];
     var total = 309.1;
     return '<div class="slide">' +
